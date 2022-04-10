@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Change the Background Color, Background Image and other Settings</title>
+<script>
+	window.post = function(url, data) {
+		return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+	}
+	
+	// Function to change webpage background color
+    function changeBodyBg(color){
+        document.body.style.background = color;
+		parent.document.body.style.backgroundColor = color;
+		parent.document.getElementById("container").style.backgroundColor=color;
+		//post("worker.php", {"background-color":"yellow"});
+	}
+</script>
+</head>
+<body>
+    <h1 id="heading">Change the Background Color</h1>
+    <p>Settings 1</p>
+    <div>
+        <label>Change Webpage Background To:</label>
+		<form id="contact-form" method="post" action="worker.php" target="my_frame">
+		<input type="hidden" name="work" value="background-color">
+		<button type="input" name="color" value="yellow" onclick="changeBodyBg('yellow');">Yellow</button>
+        <button type="input" name="color" value="lime" onclick="changeBodyBg('lime');">Lime</button>
+        <button type="input" name="color" value="orange" onclick="changeBodyBg('orange');">Orange</button>
+		<button type="input" name="color" value="red" onclick="changeBodyBg('red');">Red</button>
+        <button type="input" name="color" value="green" onclick="changeBodyBg('green');">Green</button>
+        <button type="input" name="color" value="blue" onclick="changeBodyBg('blue');">Blue</button>
+		</form>
+	</div>
+	<hr>
+	<h1 id="heading">Change the Background Image</h1>
+    <p>Settings 2</p>
+	<div>
+        <label>Change Webpage Background Image To:</label>
+    </br>
+	<br>
+	<iframe type="hidden" name="my_frame" src="worker.php" style="width: 0; height: 0; border: 0; border: none; position: absolute;">
+	</iframe>
+</body>
+<script src="js/jquery.js"></script>
+</html>
