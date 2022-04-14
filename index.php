@@ -72,7 +72,7 @@ function checkTime(i) {
 
   <!-- Modal content -->
   <!-- The Modal -->
-  <div id="myModal" class="modal">
+  <div id="myModalAbout" class="modalabout">
   <div class="modal-content">
     <span class="close">&times;</span> 
 	<p><img src="img/snoopy-have-a-nice-day.gif"></p>
@@ -90,12 +90,35 @@ function checkTime(i) {
   </div>
   </div>
   
+  <div id="myModalSettings" class="modalsettings">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+	<p>
+	<iframe style="width:100%;height:90%;border:0;" src="Settings.html" name="iframe_a">
+		<p>Your browser does not support iframes.</p>
+	</iframe>
+		<a href="Settings.html" target="iframe_a"></a>
+	</p>
+  </div>
+  </div>
+  
   <!-- The Modal -->
-  <div id="myModalAbout" class="modalabout">
-  <div class="modal-content" style=" width: 25%;">
-	<p>About<p>
-	<p><br></p>
-	<p>Free web desktop item oriented, graphical interface.</p>
+  <div id="myModal" class="modal">
+  <div class="modal-content" style="">
+	<span class="close">&times;</span> 
+	<p>
+	<iframe style="width:100%;height:90%;border:0;" src="Monitor.php" name="iframe_a">
+		<p>Your browser does not support iframes.</p>
+	</iframe>
+		<a href="Monitor.php" target="iframe_a"></a>
+	</p>
+	<p>
+	 <div class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+  </div>Wait
+</div> 
+	</p>
   </div>
   </div>
 
@@ -103,7 +126,7 @@ function checkTime(i) {
   <div id="main">
   
 	<div id="context-menu">
-      <div class="item"><a href="Settings.html">Change Background..</a></div>
+      <div class="item" id="myBtnSettings">Change Background..</div>
       <div class="item" id="go-button">Enable Full Screen</div>
     </div>
   
@@ -119,7 +142,7 @@ function checkTime(i) {
         <p>~</p>
        
 		<div class="menubox">
-				<button id="go-button">Enable Full Screen</button>
+				<button id="myBtn">Resource Monitor</button>
 			</div>
       </div>
 	
@@ -135,7 +158,7 @@ function checkTime(i) {
   
   <div id="snackbar"></div>
   
-  <div style='position:absolute; right:10px; bottom:10px; background:white; padding:0px 2px; cursor:pointer;' id="myBtnCookie">itemDesktop 2022</div>
+  <div style='position:absolute; right:10px; bottom:10px; background:white; padding:0px 2px; cursor:pointer;' id="myBtnAbout">itemDesktop 2022</div>
   
   <footer></footer>
   
@@ -150,11 +173,17 @@ var modal = document.getElementById("myModal");
 // Get the modal
 var modalabout = document.getElementById("myModalAbout");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtnCookie");
+// Get the modal
+var modalsettings = document.getElementById("myModalSettings");
 
 // Get the button that opens the modal
-var btnabout = document.getElementById("myBtnAboutCookie");
+var btn = document.getElementById("myBtn");
+
+// Get the button that opens the modal
+var btnsettings = document.getElementById("myBtnSettings");
+
+// Get the button that opens the modal
+var btnabout = document.getElementById("myBtnAbout");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -162,26 +191,40 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
   modal.style.display = "block";
+  myNotify('open Software dialog..');
+}
+
+// When the user clicks the button, open the modal 
+btnsettings.onclick = function() {
+  modalsettings.style.display = "block";
+  myNotify('open Settings dialog..');
 }
 
 // When the user clicks the button, open the modal 
 btnabout.onclick = function() {
   modalabout.style.display = "block";
+  myNotify('open About dialog..');
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
+  modalsettings.style.display = "none";
+  modalabout.style.display = "none";
+  myNotify('close dialog..');
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    //modal.style.display = "none";
   }
-//  if (event.target == modalabout) {
-//    modalabout.style.display = "none";
-//  }
+  if (event.target == modalsettings) {
+    //modalsettings.style.display = "none";
+  }
+  if (event.target == modalabout) {
+    //modalabout.style.display = "none";
+  }
 }
 </script>
 
