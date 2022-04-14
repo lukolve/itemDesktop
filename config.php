@@ -16,6 +16,19 @@ $users = array(
 
 $author = "Copyright (c) 2020 - " . date("Y") . " Lukas Veselovsky"; 
 
+$sessionLifetime = 1800; // 30 minut
+ini_set("session.gc_maxlifetime", $sessionLifetime);
+if (!isset($_SESSION['atime']) ||
+        $_SESSION['atime'] + $sessionLifetime < time()){
+		$_SESSION = ['atime' => time()]; // Vymazat vše a nastavit čas
+}else{
+		$_SESSION['atime'] = time();
+}
+
+if ($_POST['submit_btn']=="Logout") {
+	unset( $_SESSION['loginuser'] );
+	//session_destroy(); // To delete whole session
+} else
 if ($_POST['submit_btn']=="Sign In") {
 $icount=0;
 
